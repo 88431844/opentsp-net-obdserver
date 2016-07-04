@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- please see examples of patterns: http://logback.qos.ch/access.html -->
+            <pattern>%h %l %u [%t] "%r" %s %b "%i{Referer}" %D "%i{User-Agent}"</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log/localhost_access_logtime.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>log/localhost_access_logtime.%d{yyyy-MM-dd}.log</FileNamePattern>
+        </rollingPolicy>
+
+        <encoder>
+            <!-- please see examples of patterns: http://logback.qos.ch/access.html -->
+            <pattern>%h %l %u [%t] "%r" %s %b "%i{Referer}" %D "%i{User-Agent}"</pattern>
+        </encoder>
+    </appender>
+
+    <appender-ref ref="STDOUT"/>
+
+    <appender-ref ref="FILE" />
+</configuration>

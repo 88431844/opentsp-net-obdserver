@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: opentsp-notice-core
+
+  cloud:
+    config:
+      env: default
+      label: master
+      uri: http://cloudConfig:8900

@@ -1,0 +1,11 @@
+server.port: 8900
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://wdgit.mapbar.com/cloud_config_sgmw/cloud_config_sgmw.git
+          username: sgmwcloud
+          password: t9NMKnA4uaKB
+
+spring.cloud.config.server.native.locations: classpath:/

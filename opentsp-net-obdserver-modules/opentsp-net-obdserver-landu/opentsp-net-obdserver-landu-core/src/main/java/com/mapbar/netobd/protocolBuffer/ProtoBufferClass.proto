@@ -1,0 +1,352 @@
+package com.mapbar.neobd.protocolBuffer;
+
+option java_package = "com.mapbar.neobd.protocolBuffer";
+option java_outer_classname = "ProtoBufferClass";
+
+//获取车辆档案
+message InputGetVehicleFile {
+	required string user_id = 1;
+	required string car_id = 2;
+}
+
+message OutputGetVehicleFile {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+
+	message VehicleFile {
+		required string bind_time = 1;
+		required string car_code = 2;
+		required string car_id = 3;
+		required string car_model_id = 4;
+		required string engine_number = 5;
+		required string is_custom_oil = 6;
+		required string last_user_time = 7;
+		required string phone = 8;
+		required string set_oil_area = 9;
+		required double set_oil_price = 10;
+		required int32 set_oil_type = 11;
+		required int32 sim_state = 12;
+		required string sn = 13;
+		required string vin_code = 14;
+		required int32 obd_state = 15;
+	}
+
+	optional VehicleFile vehicleFile  = 4;
+ }
+
+//添加用户车辆信息
+message InputSetCarInfo {
+	required string user_id = 1;
+	required string car_model_id = 2;
+	required string car_code = 3;
+	required string vin = 4;
+	required string product = 5;
+}
+
+message OutputSetCarInfo {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+	optional string car_id = 4;
+}
+
+//设置车辆档案
+message InputSetVehicleFile {
+	required string user_id = 1;
+	optional string car_id = 2;
+	required string car_model_id = 3;
+	required string car_code = 4;
+	required string vin = 5;
+	required string engine_number = 6;
+	required int32 is_custome_oil = 7;
+	required string oil_area = 8;	
+	required int32 oil_type = 9;
+	required double oil_price = 10;
+	required string product = 11;
+}
+
+message OutputSetVehicleFile {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time = 3;
+	required string car_id = 4;
+}
+
+//设置用户设备绑定
+message InputSetBindDrive {
+	required string user_id = 1;
+	required string car_id = 2;
+	required string sn = 3;
+	required string product = 4;
+}
+
+message OutputSetBindDrive {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+}
+
+//解绑用户设备
+message InputRemoveSnBinding {
+	required string car_id = 1;
+	required string user_id = 2;
+	required string sn = 3;
+}
+
+message OutputRemoveSnBinding {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+}
+
+//获取油价城市列表
+message OutputGetAreaList {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+	
+	message AreaList {
+		required string area = 1;
+		required string first = 2;
+	}
+
+	repeated AreaList areaList = 4;
+}
+
+//获取指定城市的油价
+
+message InputGetOilPrice {
+	required string cityName = 1;
+}
+
+message OutputGetOilPrice {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+	
+	message OilPrice {
+		required string id = 1;
+		required string oilType = 2;
+		required string price = 3;
+	}
+
+	repeated OilPrice oilPrice = 4;
+}
+
+//设置推送绑定
+message InputSetPushBind {
+	required string user_id = 1;
+	required string car_id = 2;
+	required string push_token = 3;
+	required string product = 4;
+}
+
+message OutputSetPushBind {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+}
+
+//设置推送提醒
+message InputSetPushRemind {
+	required string car_id = 2;
+	required string user_id = 3;
+	required int32 ignition_push = 4;
+	required int32 offline_push = 5;
+	required int32 voltages_push = 6;
+	required double set_voltages = 7;
+	required int32 shock_push = 8;
+}
+
+message OutputSetPushRemind {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+}
+
+//获取推送提醒
+message InputGetPushRemind {
+	required string user_id = 1;
+	required string car_id = 2;
+}
+
+message OutputGetPushRemind {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+
+	message PushRemind {
+		required string id = 1;
+		required string car_id = 2;
+		required string user_id = 3;
+		required int32 ignition_push = 4;
+		required int32 offline_push = 5;
+		required int32 voltages_push = 6;
+		required double set_voltages = 7;
+		required int32 shock_push = 8;
+	}
+
+	optional PushRemind pushRemind = 4;
+}
+
+//获取最新的一条行程
+message InputGetNowestTravel {
+	required string car_id = 1;
+	required string user_id = 2;
+	required string sn = 3;
+}
+
+message OutputGetNowestTravel {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+
+	message NowTravelDesc {
+		required string travel_id = 1;// 行程ID
+		required string start_time = 2;// 行程开始时间
+		required string end_time = 3;// 行程结束时间
+		required string travel_time = 4;// 行程耗时
+		required string start_point = 5;//开始点
+		required string end_point = 6;//结束点
+		required double this_travel_len = 7;// 本次行程里程   米
+		required double this_avg_oil = 8;//本次平均油耗
+		required double carmodel_avg_oil = 9;//同车百公里油耗，默认去综合油耗，没有取9
+		required double this_oil_ware = 10;// 行程油耗L
+		required double history_oil_ware = 11;// 历史油耗L
+		required int32 avg_speed = 12;// 平均速度
+		required int32 max_speed = 13;// 最高速度
+		required string speed_info = 14;// 速度统计 range:距离小计 speed:设置速度 sum_time:时间小计
+		required int32 this_fastup_count = 15;// 急加速次数
+		required int32 this_fastlow_count = 16;// 急减速次数
+		required int32 this_crook_count = 17;// 急转弯次数
+		required string track_info = 18;// 轨迹信息
+		required double travel_score = 19;//行程得分
+		required string gas_consum_des = 20;//油耗分析建议
+		required string drive_des = 21;//驾驶分析建议
+		required double travel_cost = 22;//行程花费
+	}
+
+	optional NowTravelDesc nowtravelDesc = 4;
+
+}
+
+//获取每月行程列表
+message InputGetMonthTravel {
+	required string car_id = 1;
+	required string user_id = 2;
+	required string month = 3;
+}
+
+message OutputGetMonthTravel {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+	required string year_month = 4;
+	
+	message DayArray {
+		required int32 travel_day = 1;
+		required int32 travel_number = 2;
+	}
+
+	repeated DayArray day_array = 5;
+}
+
+//获取指定日期的行程
+message InputGetDayTravel {
+	required string car_id = 1;
+	required string user_id = 2;
+	required string travel_day = 3;
+}
+
+message OutputGetDayTravel {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+	required string travel_day = 4;
+
+	message TravelList {
+		required string travel_id = 1;
+		required string start_point = 2;
+		required string end_point = 3;
+		required string start_time =  4;
+		required string end_time = 5;
+	}
+
+	repeated TravelList travelList = 5;
+}
+
+//获取行程详情
+message InputGetTravelDesc {
+	required string travel_id = 1;
+}
+
+message OutputGetTravelDesc {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+
+	message TravelDesc {
+		required string travel_id = 1;// 行程ID
+		required string start_time = 2;// 行程开始时间
+		required string end_time = 3;// 行程结束时间
+		required string travel_time = 4;// 行程耗时
+		required string start_point = 5;//开始点
+		required string end_point = 6;//结束点
+		required double this_travel_len = 7;// 本次行程里程   米
+		required double this_avg_oil = 8;//本次平均油耗
+		required double carmodel_avg_oil = 9;//同车百公里油耗，默认去综合油耗，没有取9
+		required double this_oil_ware = 10;// 行程油耗L
+		required double history_oil_ware = 11;// 历史油耗L
+		required int32 avg_speed = 12;// 平均速度
+		required int32 max_speed = 13;// 最高速度
+		required string speed_info = 14;// 速度统计 range:距离小计 speed:设置速度 sum_time:时间小计
+		required int32 this_fastup_count = 15;// 急加速次数
+		required int32 this_fastlow_count = 16;// 急减速次数
+		required int32 this_crook_count = 17;// 急转弯次数
+		required string track_info = 18;// 轨迹信息
+		required double travel_score = 19;//行程得分
+		required string gas_consum_des = 20;//油耗分析建议
+		required string drive_des = 21;//驾驶分析建议
+		required double travel_cost = 22;//行程花费
+	}
+
+	optional TravelDesc travelDesc = 4;
+}
+
+//获取体检数据
+message InputGetCheckInfo {
+	required string user_id = 1;
+	required string car_id = 2;
+}
+
+message OutputGetCheckInfo {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+	optional string checkInfo = 4;
+	required string check_time  = 5;
+}
+
+//获取车况信息
+message InputGetConditionInfo {
+	required string user_id = 1;
+	required string car_id = 2;
+}
+
+message OutputGetConditionInfo {
+	required int32 code = 1;
+	required string msg = 2;
+	required string sev_time  = 3;
+
+	message ConditionInfo {
+		optional int32 range = 1;//是否在范围内
+		optional double voltager = 2;//电压
+		optional int32 collision = 3;//碰撞提醒
+		optional double x = 4;//点经度
+		optional double y = 5;//点纬度
+		optional string address = 6;//点地址
+	}
+
+	optional ConditionInfo conditionInfo = 4;
+}

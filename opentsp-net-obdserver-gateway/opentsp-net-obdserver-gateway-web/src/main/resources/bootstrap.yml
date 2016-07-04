@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: opentsp-gateway-web
+
+  cloud:
+    config:
+      env: default
+      label: master
+      uri: http://cloudConfig:8900
+
