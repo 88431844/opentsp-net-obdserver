@@ -1,21 +1,13 @@
-Step1:在本地添加maven依赖
+#联网版obd业务接口服务开发1.0版本
 
-    <mirror>
-        <id>central</id>
-        <mirrorOf>*</mirrorOf>
-        <url>https://wdnexus.mapbar.com/content/groups/public/</url>
-    </mirror>
+###面向车联网提供的服务接口，支撑后台服务端和客户端功能开发.
 
-Step2:将项目cacerts证书，复制到本地JDK目录java_home\jre\lib\security
-
-Step3:maven compile install
-
-Step4:启动
-
-      opentsp-gateway-web   Application.java, VM options:-Dspring.profiles.active=local
-
-      opentsp-helloword-core   Application.java, VM options:-Dspring.profiles.active=local
-
-Step5:访问http://localhost:8090/hello/getTime?param=1
-
-徐冰浩
+    1,涉及到的技术mysql5.5
+    2,基础架构基于平台框架（微服务框架,docker部署）
+    3,数据库访问层spring jpa
+    4,数据缓存redis
+    5,消息缓存中间件kafka
+    6,数据传输方式google protobuf
+    7,接口定义及数据库设计文档,doc/*
+    8,部署方式docker
+    9,消息推送等等

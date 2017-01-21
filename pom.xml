@@ -3,7 +3,7 @@
 	<parent>
 		<artifactId>opentsp-parent</artifactId>
 		<groupId>com.navinfo</groupId>
-		<version>1.320</version>
+		<version>1.346-RC18</version>
 	</parent>
 
 	<!-- <scm> <connection>scm:git:https://git@wdgit.mapbar.com/wedrive_project_sgmw/opentsp-sgmw.git</connection> <tag>opentsp-traceserver-1.0-SNAPSHOT</tag> </scm> -->
